@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: Thistle;
+            border-radius: 5px;
+            box-shadow: LightGray;
+            font-size: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            background-color: plum;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+            width: 25px;
+        }
+
+        .submit-button {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+    </style>
+</head>
+<body>
+
+    <h2><b>Registration Form</b></h2>
+
+    <div class="container">
+        <form>
+
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" placeholder="Enter First Name" name="first_name">
+                <span id="uferror" style="color:red"> </span>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" placeholder="Enter Last Name" name="last_name">
+                <span id="ulerror" style="color:red"> </span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="contact_number">Contact Number:</label>
+                <input type="text" id="contact_number" placeholder="Enter Contact Number" Name="contact number">
+                <span id="contacterror" style="color:red"> </span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter Email">
+                <span id="emailerror" style="color:red"> </span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" placeholder="Enter Address  " name="address">
+                <span id="Add" style="color:red"> </span>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth">
+            </div>
+
+            <div class="fgroup">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter Password" name="password">
+                <span id="upass" style="color:red" ;></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" placeholder=" Re-enter Password" name="confirm_password">
+                <span id="pass" style="color:red" ;></span>
+            </div>
+
+
+            <div class="submit-button">
+                <button type="button" id="submit">Submit</button>
+            </div>
+        </form>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#submit').click(function(){
+
+                var show = true;
+
+                var fname = $('#first_name').val()
+                if(!fname)
+                {
+                    $('#uferror').html('** Enter Your Fast Name');
+                    show = false;
+                }
+                else
+                {
+                    $('#uferror').html('');
+                }
+
+                var lname = $('#last_name').val()
+                if (!lname) {
+                    $('#ulerror').html('** Enter Your Last Name');
+                    show = false;
+                }
+                else {
+                    $('#ulerror').html('');
+                }
+
+                var contectNumber = $('#contact_number').val();
+                if (contectNumber.length !=10) {
+                    $('#contacterror').html('** Contect Number Allowed 10 Digit');
+                    show = false;
+                }
+                else {
+                    $('#contacterror').html('');
+                }
+
+                var addr = $('#address').val();
+                if (!addr) {
+                    $('#Add').html('** Enter a Address ');
+                    show = false;
+                }
+                else {
+                    $('#Add').html('');
+                }
+
+                var emailid = $('#email').val();
+                var emailpattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if (!emailid.match(emailpattern))
+                {
+                    $('#emailerror').html('** Enter Valid Email');
+                    show = false;
+                }
+                else {
+                    $('#emailerror').html('');
+                }
+
+                var pass1 = $('#password').val();
+                var pass2 = $('#confirm_password').val();
+
+                if (!pass1) {
+                    $('#upass').html('** Enter Password');
+                    show = false;
+                }
+                else {
+                    $('#upass').html('');
+                }
+
+                if(pass1 != pass2)
+                {
+                    $('#pass').html('** Password Not Match');
+                    show = false;
+                }
+                else {
+                    $('#pass').html('');
+                }
+                  
+
+                if(show)
+                {
+                    alert("User Name - " + fname + lname + "\n" + "Contect Number - " +contectNumber + 
+                    "\n" + "Email Id - " + emailid +"\n"+ "Address - "+ addr);
+                }
+            });
+        });
+        
+    </script>
+
+</body>
+</html>
+
